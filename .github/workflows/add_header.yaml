@@ -5,7 +5,7 @@ on: # The events that trigger the workflow
     branches:
       - test #Trigger on push to the 'main' branch
     paths:
-      - "test-1/**"
+      - "test-1/*"
   pull_request:
     branches:
       - main # Trigger when a pull request is made to 'main'
