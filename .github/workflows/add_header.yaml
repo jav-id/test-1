@@ -16,7 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: $(pwd)
+        working-directory: .
     steps: # A list of steps that the job will execute
       # Print the current directory for debugging
       - name: Print current directory
