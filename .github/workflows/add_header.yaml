@@ -21,6 +21,8 @@ jobs:
       # Print the current directory for debugging
       - name: Print current directory
         run: pwd
+      - name: list current directory
+        run: ls
       - name: Step Name # Name of the step
         uses: actions/checkout@v2 # Example of a predefined action
       - name: Run a Command
