@@ -4,6 +4,8 @@ on: # The events that trigger the workflow
   push:
     branches:
       - main # Trigger on push to the 'main' branch
+    paths:
+      - "**"
   pull_request:
     branches:
       - main # Trigger when a pull request is made to 'main'
