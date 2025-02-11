@@ -22,7 +22,7 @@ jobs:
       - name: Print current directory
         run: pwd
       - name: list current directory
-        run: ls
+        run: ls $(pwd)
       - name: Step Name # Name of the step
         uses: actions/checkout@v2 # Example of a predefined action
       - name: Run a Command
