@@ -21,11 +21,11 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v2
-      # Print the current directory to check where we are
-      # - name: Print current directory
-      #   run: |
-      #     pwd
-      #     ls
+      Print the current directory to check where we are
+      - name: Print current directory
+        run: |
+          pwd
+          ls
       - name: Clone proxy-wasm-cpp-sdk
         run: |
           # git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
