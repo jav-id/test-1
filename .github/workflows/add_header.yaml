@@ -42,12 +42,12 @@ jobs:
         run: |
           cd addheader
           ls  
-          docker run -v $PWD:/work -w /work wasmsdk:v3 /build_wasm.sh addheader.wasm
+          docker run -v $(pwd):/work -w /work wasmsdk:v3 /build_wasm.sh addheader.wasm
           docker commit `docker ps -l | grep wasmsdk:v3 | awk '{print $1}'` wasmsdk:v3
       - name: Create Dir package
         run: |
-          mkdir ../package
+          mkdir package
       - name: Copy wasm file to package dir 
         run: |
-          cp -f ../addheader/addheader.wasm package/plugin.wasm
+          cp -f addheader/addheader.wasm package/plugin.wasm
 
