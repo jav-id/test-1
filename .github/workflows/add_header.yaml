@@ -19,4 +19,4 @@ jobs:
       - name: Run a Command
         run: |
           cd proxy-wasm-cpp-sdk
-          docker build -t wasmsdk:v3 -f Dockerfile-sdk .
+          docker build -t wasmsdk:v3 -f proxy-wasm-cpp-sdk/Dockerfile-sdk .
