@@ -16,7 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: .
+        working-directory: pwd
     steps: # A list of steps that the job will execute
       # Print the current directory for debugging
       - name: Print current directory
@@ -27,5 +27,5 @@ jobs:
         uses: actions/checkout@v2 # Example of a predefined action
       - name: Run a Command
         run: |
-          cd proxy-wasm-cpp-sdk
+          cd $(pwd)/proxy-wasm-cpp-sdk
           docker build -t wasmsdk:v3 -f proxy-wasm-cpp-sdk/Dockerfile-sdk .
