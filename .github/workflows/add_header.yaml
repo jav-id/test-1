@@ -28,7 +28,7 @@ jobs:
       #     ls
       - name: Clone proxy-wasm-cpp-sdk
         run: |
-          git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
+          # git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
           cd proxy-wasm-cpp-sdk
           docker build -t wasmsdk:v3 -f Dockerfile-sdk .
       # - name: Change Dir proxy-wasm-cpp-sdk
