@@ -32,6 +32,7 @@ jobs:
       - name: Change Dir proxy-wasm-cpp-sdk
         run: |
           cd proxy-wasm-cpp-sdk
+          ls
       - name: Docker build wasmsdk
         run: |
           docker build -t wasmsdk:v3 -f Dockerfile-sdk .
