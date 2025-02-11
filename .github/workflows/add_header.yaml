@@ -41,12 +41,8 @@ jobs:
       - name: Change Dir to add_header
         run: |
           cd addheader
-          ls    
-      - name: Compile the plugin
-        run: |
+          ls  
           docker run -v $PWD:/work -w /work wasmsdk:v3 /build_wasm.sh addheader.wasm
-      - name: Plugin code is compiled using the Docker image 
-        run: |
           docker commit `docker ps -l | grep wasmsdk:v3 | awk '{print $1}'` wasmsdk:v3
       - name: Create Dir package
         run: |
