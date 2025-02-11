@@ -21,15 +21,28 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v2
-      # Print the current directory for debugging
-      # - name: Print current directory
-      #   run: pwd
-      # - name: list current directory
-      #   run: ls $(pwd)
-      - name: Run a Command
+      # - name: Clone proxy-wasm-cpp-sdk
+      #   run: |
+      #     git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
+      - name: Change Dir proxy-wasm-cpp-sdk
         run: |
-          git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
           cd proxy-wasm-cpp-sdk
-          pwd
-          ls -l 
+      - name: Docker build wasmsdk
+        run: |
           docker build -t wasmsdk:v3 -f Dockerfile-sdk .
+      - name: Change Dir to add_header
+        run: |
+          cd ../addheader    
+      - name: Compile the plugin
+        run: |
+          docker run -v $PWD:/work -w /work wasmsdk:v3 /build_wasm.sh addheader.wasm
+      - name: Plugin code is compiled using the Docker image 
+        run: |
+          docker commit `docker ps -l | grep wasmsdk:v3 | awk '{print $1}'` wasmsdk:v3
+      - name: Create Dir package
+        run: |
+          mkdir ../package
+      - name: Copy wasm file to package dir 
+        run: |
+          cp -f ../addheader/addheader.wasm package/plugin.wasm
+
