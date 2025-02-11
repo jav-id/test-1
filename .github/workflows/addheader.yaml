@@ -1,0 +1,23 @@
+name: Add header service
+
+on: # The events that trigger the workflow
+  push:
+    branches:
+      - main #Trigger on push to the 'main' branch
+    paths:
+      - "**/*"
+  pull_request:
+    branches:
+      - main # Trigger when a pull request is made to 'main'
+
+jobs:
+  job_name: # Define jobs that will run in this workflow
+    runs-on: ubuntu-latest # The operating system to run the job
+    steps: # A list of steps that the job will execute
+      - name: Step Name # Name of the step
+        uses: actions/checkout@v2 # Example of a predefined action
+      - name: Run a Command
+        run: |
+          git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
+          cd proxy-wasm-cpp-sdk
+          docker build -t wasmsdk:v3 -f Dockerfile-sdk .
