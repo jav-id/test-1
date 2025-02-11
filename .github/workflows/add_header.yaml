@@ -26,9 +26,9 @@ jobs:
         run: |
           pwd
           ls
-      # - name: Clone proxy-wasm-cpp-sdk
-      #   run: |
-      #     git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
+      - name: Clone proxy-wasm-cpp-sdk
+        run: |
+          git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
       - name: Change Dir proxy-wasm-cpp-sdk
         run: |
           cd proxy-wasm-cpp-sdk
