@@ -21,7 +21,7 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v2
-      Print the current directory to check where we are
+      # Print the current directory to check where we are
       - name: Print current directory
         run: |
           pwd
