@@ -28,6 +28,7 @@ jobs:
       #   run: ls $(pwd)
       - name: Run a Command
         run: |
+          git clone https://github.com/proxy-wasm/proxy-wasm-cpp-sdk.git
           cd proxy-wasm-cpp-sdk
           pwd
           ls -l 
