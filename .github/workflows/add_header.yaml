@@ -32,4 +32,4 @@ jobs:
           cd proxy-wasm-cpp-sdk
           pwd
           ls -l 
-          docker build -t wasmsdk:v3 -f proxy-wasm-cpp-sdk/Dockerfile-sdk .
+          docker build -t wasmsdk:v3 -f $(pwd)/proxy-wasm-cpp-sdk/Dockerfile-sdk .
