@@ -22,10 +22,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       # Print the current directory to check where we are
-      - name: Print current directory
-        run: |
-          pwd
-          ls
+      # - name: Print current directory
+      #   run: |
+      #     pwd
+      #     ls
       - name: Clone proxy-wasm-cpp-sdk
         run: |
           
