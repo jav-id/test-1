@@ -3,6 +3,7 @@ PROTOBUF=     # full / lite / none
 WASM_DEPS=    # absl_base re2 ...
 
 # Include the SDK Makefile
+@echo "GitHub Workspace Directory: $(GITHUB_WORKSPACE)"
 
-PROXY_WASM_CPP_SDK=$(GITHUB_WORKSPACE)/proxy-wasm-cpp-sdk
+PROXY_WASM_CPP_SDK=../proxy-wasm-cpp-sdk
 include ${PROXY_WASM_CPP_SDK}/Makefile
