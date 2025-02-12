@@ -26,8 +26,8 @@ jobs:
         run: |
           pwd
           ls
-      - name: Clone proxy-wasm-cpp-sdk
-        run: |
+      # - name: Clone proxy-wasm-cpp-sdk
+      #   run: |
           
           cd proxy-wasm-cpp-sdk
           ls -l
