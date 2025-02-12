@@ -29,7 +29,7 @@ jobs:
       - name: Clone proxy-wasm-cpp-sdk
         run: |
           
-          cd proxy-wasm-cpp-sdk && docker build -t wasmsdk:v3 -f Dockerfile-sdk proxy-wasm-cpp-sdk/
+          cd proxy-wasm-cpp-sdk && ls -l && docker build -t wasmsdk:v3 -f Dockerfile-sdk proxy-wasm-cpp-sdk/
       # - name: Makfile print
       #      run: make print-pwd
       - name: Change Dir to addheader
