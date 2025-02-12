@@ -30,12 +30,13 @@ jobs:
         run: |
           cd proxy-wasm-cpp-sdk
           ls -l
-          docker build -t wasmsdk:v3 -f Dockerfile-sdk .
+      #    docker build -t wasmsdk:v3 -f Dockerfile-sdk .
       # - name: Makfile print
       #      run: make print-pwd
       - name: Change Dir to addheader
         run: |
           cd addheader
+          ls -l ../proxy-wasm-cpp-sdk
           docker run -v $(pwd):/work -w /work wasmsdk:v3 /build_wasm.sh addheader.wasm
           docker commit `docker ps -l | grep wasmsdk:v3 | awk '{print $1}'` wasmsdk:v3
       - name: Copy wasm file to package dir 
