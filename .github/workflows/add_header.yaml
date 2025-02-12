@@ -21,19 +21,16 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v4
-      # Print the current directory to check where we are
-      - name: Print current directory
-        run: |
-          pwd
-          ls
-          cd proxy-wasm-cpp-sdk
-          echo "after cd proxy-wasm-cpp-sdk and pwd"
-          pwd
-          ls -l
-          docker build -t wasmsdk:v3 -f Dockerfile-sdk proxy-wasm-cpp-sdk/
-      # - name: CClone proxy-wasm-cpp-sdk
+      # # Print the current directory to check where we are
+      # - name: Print current directory
       #   run: |
-          
+      #     pwd
+      #     ls
+      - name:  proxy-wasm-cpp-sdk
+        run: |
+          cd proxy-wasm-cpp-sdk
+          ls -l
+          docker build -t wasmsdk:v3 -f Dockerfile-sdk .
       # - name: Makfile print
       #      run: make print-pwd
       - name: Change Dir to addheader
