@@ -31,7 +31,7 @@ jobs:
           pwd
           ls -l
           docker build -t wasmsdk:v3 -f Dockerfile-sdk proxy-wasm-cpp-sdk/
-      # - name: Clone proxy-wasm-cpp-sdk
+      # - name: CClone proxy-wasm-cpp-sdk
       #   run: |
           
       # - name: Makfile print
