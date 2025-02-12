@@ -6,4 +6,7 @@ WASM_DEPS=    # absl_base re2 ...
 PROXY_WASM_CPP_SDK=proxy-wasm-cpp-sdk
 include ${PROXY_WASM_CPP_SDK}/Makefile
 
-echo $(wildcard ../proxy-wasm-cpp-sdkst)
+# Debugging: Print current directory
+$(info Current directory: $(PWD))
+$(info Checking SDK path: $(PROXY_WASM_CPP_SDK))
+$(info Path to Makefile: ${PROXY_WASM_CPP_SDK}/Makefile)
