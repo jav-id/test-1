@@ -27,6 +27,8 @@ jobs:
           pwd
           ls
           cd proxy-wasm-cpp-sdk
+          echo "after cd proxy-wasm-cpp-sdk and pwd"
+          pwd
           ls -l
           docker build -t wasmsdk:v3 -f Dockerfile-sdk proxy-wasm-cpp-sdk/
       # - name: Clone proxy-wasm-cpp-sdk
