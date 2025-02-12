@@ -30,7 +30,7 @@ jobs:
         run: |
           cd proxy-wasm-cpp-sdk
           ls -l
-      #    docker build -t wasmsdk:v3 -f Dockerfile-sdk .
+          docker build -t wasmsdk:v3 -f Dockerfile-sdk .
       # - name: Makfile print
       #      run: make print-pwd
       - name: Change Dir to addheader
