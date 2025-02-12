@@ -8,5 +8,6 @@ include ${PROXY_WASM_CPP_SDK}/Makefile
 
 # Debugging: Print current directory
 $(info Current directory: $(PWD))
+$(info Current directory: $(LS))
 $(info Checking SDK path: $(PROXY_WASM_CPP_SDK))
 $(info Path to Makefile: ${PROXY_WASM_CPP_SDK}/Makefile)
