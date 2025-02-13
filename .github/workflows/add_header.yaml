@@ -40,7 +40,7 @@ jobs:
         run: |
           cp -f addheader.wasm package/plugin.wasm
       - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v3
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ env.GCP_PROJECT_ID }}
           credentials_json: ${{secrets.GOOGLE_CREDENTIALS}}'
