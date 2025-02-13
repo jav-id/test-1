@@ -52,6 +52,9 @@ jobs:
         run: |
           docker build --no-cache --platform wasm -t ${{env.GCP_ARTIFACT_IMAGE}} package/
       #    docker build -t us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:${{ github.sha }} .
+      - name: Docker Auth
+        run: |
+          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-east4-docker.pkg.dev
       - name: Push Docker image to Artifact Registry
         run: |
           docker tag ${{env.GCP_ARTIFACT_IMAGE}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:prod
