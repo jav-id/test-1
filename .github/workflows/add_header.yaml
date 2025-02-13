@@ -58,6 +58,6 @@ jobs:
       #    docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:${{ github.sha }}
       - name: Push latest tag to Artifact Registry
         run: |
-          docker push ${{env.GCP_ARTIFACT_IMAGE}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:prod
+          docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:prod
       #    docker tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:${{ github.sha }} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:latest
       #    docker push us-east4-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:latest
