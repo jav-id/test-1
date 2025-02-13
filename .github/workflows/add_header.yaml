@@ -10,6 +10,11 @@ on: # The events that trigger the workflow
     branches:
       - main # Trigger when a pull request is made to 'main'
 
+env:
+  GCP_PROJECT_ID: polar-strata-450805-e9
+  GCP_SERVICE_ACCOUNT: github-actions@polar-strata-450805-e9.iam.gserviceaccount.com
+  GCP_ARTIFACT_REPO: add-header-image
+  GCP_ARTIFACT_IMAGE: addheader
 jobs:
   build: # Define jobs that will run in this workflow
     runs-on: ubuntu-latest # The operating system to run the job
@@ -21,7 +26,7 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v4
-      - name:  proxy-wasm-cpp-sdk
+      - name: proxy-wasm-cpp-sdk
         run: |
           cd proxy-wasm-cpp-sdk
           ls -l
@@ -31,7 +36,28 @@ jobs:
           ls -l proxy-wasm-cpp-sdk
           docker run -v $(pwd):/work -w /work wasmsdk:v3 /build_wasm.sh addheader.wasm
           docker commit `docker ps -l | grep wasmsdk:v3 | awk '{print $1}'` wasmsdk:v3
-      - name: Copy wasm file to package dir 
+      - name: Copy wasm file to package dir
         run: |
           cp -f addheader.wasm package/plugin.wasm
-
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          credentials_json: ${{secrets.GOOGLE_CREDENTIALS}}'
+      # Configure Docker to use Google Cloud Artifact Registry
+      - name: Configure Docker to use Artifact Registry
+        run: |
+          gcloud auth configure-docker us-east4-docker.pkg.dev
+      - name: Build Docker image
+        run: |
+          docker build --no-cache --platform wasm -t ${{env.GCP_ARTIFACT_IMAGE}} package/
+      #    docker build -t us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:${{ github.sha }} .
+      - name: Push Docker image to Artifact Registry
+        run: |
+          docker tag ${{env.GCP_ARTIFACT_IMAGE}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:prod
+      #    docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:${{ github.sha }}
+      - name: Push latest tag to Artifact Registry
+        run: |
+          docker push ${{env.GCP_ARTIFACT_IMAGE}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:prod
+      #    docker tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:${{ github.sha }} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:latest
+      #    docker push us-east4-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.GCP_ARTIFACT_REPO }}/${{ env.GCP_ARTIFACT_IMAGE}}:latest
