@@ -46,14 +46,10 @@ jobs:
       - name: Build Docker image
         run: |
           docker build --no-cache --platform wasm -t ${{env.GCP_ARTIFACT_IMAGE}} package/
-      # - name: Docker Auth
-      #   run: |
-      #     gcloud auth print-access-token --impersonate-service-account ${{env.GCP_SERVICE_ACCOUNT}} | docker login -u oauth2accesstoken --password-stdin https://us-east4-docker.pkg.dev
       - name: Google SDK auth
         id: google-auth
         uses: "google-github-actions/auth@v2"
         with:
-      #    credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           token_format: access_token
           project_id: ${{ env.GCP_PROJECT_ID }}
           workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
