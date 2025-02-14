@@ -15,7 +15,7 @@ env:
   GCP_SERVICE_ACCOUNT: github-actions@polar-strata-450805-e9.iam.gserviceaccount.com
   GCP_ARTIFACT_REPO: add-header-image
   GCP_ARTIFACT_IMAGE: addheader
-  GCP_WORKLOAD_IDENTITY_PROVIDER: /projects/960080975345/locations/global/workloadIdentityPools/github-pool/providers/github
+  GCP_WORKLOAD_IDENTITY_PROVIDER: projects/960080975345/locations/global/workloadIdentityPools/github-pool/providers/github
 jobs:
   build: # Define jobs that will run in this workflow
     runs-on: ubuntu-latest # The operating system to run the job
